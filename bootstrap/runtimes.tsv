@@ -1,0 +1,37 @@
+# Language runtimes and the editor, each installed by its own version manager.
+# Kept separate from tools.tsv because none of these is "download one binary".
+#
+#   name  ref   the version to install, or `stable` to track upstream on purpose
+#   min   lowest version our configs work with, or `-`
+#   how   which manager installs it (documentation; the step decides)
+#
+# Bump with `bs.sh update`, review the diff, then commit.
+#
+# name	ref	min	how
+nvim	v0.12.5	0.12.0	bob
+nvm	v0.40.7	0.40.0	git tag
+node	24.21.0	20.0.0	nvm
+pnpm	12.4.1	9.0.0	get.pnpm.io
+go	1.27.1	1.22.0	go.dev tarball
+rust	stable	1.85.0	rustup
+
+# Notes on the choices above:
+#
+# nvim   AstroNvim v6 and the personal config use native LSP/Treesitter APIs.
+#        Keep the tested Neovim 0.12 baseline. bob puts it in
+#        $XDG_DATA_HOME/bob/nvim-bin -- already on PATH in zsh/.zshenv.
+# nvm    pinned independently of Node so two machines bootstrapped at different
+#        times use the same installer behaviour.
+# node   nvm, because zsh/.zshenv globs $NVM_DIR/versions/node/*/bin and reads
+#        $NVM_DIR/alias/default instead of sourcing nvm.sh (~620ms saved per
+#        shell). Keep `nvm alias default` in sync with this pin or that glob
+#        silently picks a different version.
+# go     apt's `golang-go` on resolute (26.04) is a current 1.26.x, not EOL like
+#        noble's 1.22.2 was, but its patch version is Ubuntu's to pick, not
+#        ours, so we still install the upstream tarball to ~/.local/go and shim
+#        it into ~/.local/bin. step_go reuses an apt copy instead only when it
+#        already happens to exactly match this pin.
+# rust   floats on stable on purpose: nothing here depends on a rustc version,
+#        clippy and rust-analyzer only get better, and re-downloading a ~200MB
+#        toolchain on every bump is not worth it. `min` still catches an ancient
+#        toolchain in `bs.sh doctor`.

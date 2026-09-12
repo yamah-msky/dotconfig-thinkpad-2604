@@ -1,0 +1,57 @@
+# `sheldon` configuration file
+# ----------------------------
+#
+# You can modify this file directly or you can use one of the following
+# `sheldon` commands which are provided to assist in editing the config file:
+#
+# - `sheldon add` to add a new plugin to the config file
+# - `sheldon edit` to open up the config file in the default editor
+# - `sheldon remove` to remove a plugin from the config file
+#
+# See the documentation for more https://github.com/rossmacarthur/sheldon#readme
+
+
+# For example:
+#
+# [plugins.base16]
+# github = "chriskempson/base16-shell"
+
+shell = "zsh"
+
+# Every plugin is pinned to a commit. sheldon's own lockfile lives in
+# $XDG_DATA_HOME and records only resolved paths, not revisions, so `rev` here is
+# the only way a fresh machine gets the same plugins this one runs. `bs.sh update`
+# refreshes all of them from `git ls-remote`, so keeping them current is one
+# command rather than five.
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+rev = "53a26e287fbbe2dcebb3aa1801546c6de32416fa"
+
+[templates]
+defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
+
+# Not deferred: this only appends to fpath, and it has to happen before
+# compinit runs in .zshrc or the completions never register.
+[plugins.zsh-completions]
+github = 'zsh-users/zsh-completions'
+rev = "de02bb84ab0af51e328c6ae85ab5555397c31277"
+
+[plugins.zsh-autosuggestions]
+github = 'zsh-users/zsh-autosuggestions'
+rev = "85919cd1ffa7d2d5412f6d3fe437ebdbeeec4fc5"
+apply = ["defer"]
+
+
+[plugins.zsh-bat]
+github = 'fdellwing/zsh-bat'
+rev = "467337613c1c220c0d01d69b19d2892935f43e9f"
+apply = ["defer"]
+
+# zdharma was deleted upstream; zdharma-continuum is the maintained fork.
+[plugins.fast-syntax-highlighting]
+github = "zdharma-continuum/fast-syntax-highlighting"
+rev = "4672ad5dd9ad68a7effc1476d65afb7c584ce2b3"
+apply = ["defer"]
+
+# The starship prompt is initialised in .zshrc, guarded on the binary existing.

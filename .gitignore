@@ -1,0 +1,106 @@
+# Deny by default at every depth. New files require an explicit allowlist entry.
+*
+
+# Track this policy.
+!/.gitignore
+
+# Repository documentation
+!/README.md
+
+# Bootstrap sources and manifests
+!/bootstrap/
+!/bootstrap/MANUAL.md
+!/bootstrap/README.md
+!/bootstrap/apt.tsv
+!/bootstrap/bs.sh
+!/bootstrap/cleanup.sh
+!/bootstrap/lib.sh
+!/bootstrap/npm-globals.tsv
+!/bootstrap/runtimes.tsv
+!/bootstrap/steps/
+!/bootstrap/steps/10-apt.sh
+!/bootstrap/steps/15-docker.sh
+!/bootstrap/steps/20-locale.sh
+!/bootstrap/steps/30-zdotdir.sh
+!/bootstrap/steps/40-tools.sh
+!/bootstrap/steps/50-runtimes.sh
+!/bootstrap/steps/55-npm-globals.sh
+!/bootstrap/steps/60-neovim.sh
+!/bootstrap/steps/80-git.sh
+!/bootstrap/steps/90-shell.sh
+!/bootstrap/test/
+!/bootstrap/test/Dockerfile
+!/bootstrap/test/container.sh
+!/bootstrap/test/lint.sh
+!/bootstrap/tool/
+!/bootstrap/tool/doctor.go
+!/bootstrap/tool/doctor_test.go
+!/bootstrap/tool/env.go
+!/bootstrap/tool/env_test.go
+!/bootstrap/tool/go.mod
+!/bootstrap/tool/main.go
+!/bootstrap/tool/manifest.go
+!/bootstrap/tool/manifest_test.go
+!/bootstrap/tool/update.go
+!/bootstrap/tool/update_test.go
+!/bootstrap/tool/upstream.go
+!/bootstrap/tool/version.go
+!/bootstrap/tool/version_test.go
+!/bootstrap/tools.tsv
+
+# Shareable application settings
+!/bob/
+!/bob/config.json
+!/gh/
+!/gh/config.yml
+!/git/
+!/git/config.local.template
+!/git/ignore
+!/sheldon/
+!/sheldon/plugins.toml
+!/tmux/
+!/tmux/tmux.conf
+
+# Manual
+!/manual/
+!/manual/index.html
+
+# Neovim configuration and plugin lockfile
+!/nvim/
+!/nvim/.gitignore
+!/nvim/README.md
+!/nvim/init.lua
+!/nvim/lazy-lock.json
+!/nvim/lua/
+!/nvim/lua/config/
+!/nvim/lua/config/autocmds.lua
+!/nvim/lua/config/keymaps.lua
+!/nvim/lua/config/lazy.lua
+!/nvim/lua/config/options.lua
+!/nvim/lua/config/treesitter-parsers.lua
+!/nvim/lua/plugins/
+!/nvim/lua/plugins/astrocore.lua
+!/nvim/lua/plugins/cmp.lua
+!/nvim/lua/plugins/editor.lua
+!/nvim/lua/plugins/formatting.lua
+!/nvim/lua/plugins/lsp.lua
+!/nvim/lua/plugins/telescope.lua
+!/nvim/lua/plugins/ui.lua
+!/nvim/stylua.toml
+
+# Shell configuration (no history or completion caches)
+!/zsh/
+!/zsh/.zshenv
+!/zsh/.zshrc
+!/zsh/aliases.zsh
+
+# Download helper (no downloads or archives)
+!/yt-dlp/
+!/yt-dlp/download-playlist.sh
+
+# Intentionally NOT allowed:
+# gh/hosts.yml: authentication; git/config.local: machine-local settings.
+# git/config: currently contains a personal email and machine-specific signing settings.
+# nvm/: installed runtime; go/: telemetry; ubuntu-insights/: local consent.
+# Shell history, logs, caches, credentials, downloads, and unknown new files.
+# To add a file, allow its parent directories and then its exact path above.

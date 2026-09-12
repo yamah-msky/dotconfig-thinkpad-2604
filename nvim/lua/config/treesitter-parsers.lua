@@ -1,0 +1,23 @@
+return {
+  "bash",
+  "query",
+
+  "typescript",
+  "tsx",
+  "javascript",
+  "json",
+  "yaml",
+  "toml",
+  "html",
+  "css",
+  "graphql",
+  "lua",
+  "vim",
+  "vimdoc",
+  "markdown",
+  "markdown_inline",
+  "c",
+  "cpp",
+  "rust",
+  "python",
+}

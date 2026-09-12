@@ -1,0 +1,10 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+
+# The root .gitignore owns the allowlist; do not re-include files here.
